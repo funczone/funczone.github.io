@@ -1,2 +1,2 @@
 # funczone.github.io
-func.zone
+https://func.zone
