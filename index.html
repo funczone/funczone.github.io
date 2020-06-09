@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title id="title">func.zone</title>
+  <link rel="icon" id="favicon" type="image/png" href="assets/favicon.png" />
+  <link rel="canonical" href="https://func.zone" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <!-- meta bullshit --->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" itemprop="author" content="mechabubba">
+  <meta name="description" itemprop="description" content="a gated gaming community">
+  <meta name="theme-color" content="#ff00dc">
+  <meta property="og:title" itemprop="name" content="func.zone" />
+  <meta property="og:site_name" content="func.zone" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="a gated gaming community">
+  <meta property="og:url" content="https://func.zone" />
+  <meta name="twitter:title" content="func.zone" />
+  <meta name="twitter:description" content="a gated gaming community">
+  <meta name="twitter:site" content="func.zone" />
+  <meta name="twitter:domain" content="https://func.zone" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      height: 100%;
+      width: 100%;
+      background-color: #222222;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      min-height: 100%;
+      min-width: 100%;
+      color: #eeeeee;
+      font-family: 'Roboto Mono', Monospace, sans-serif;
+      font-size: 16px;
+      line-height: 1.4;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    #waves {
+      width: auto;
+      height: auto;
+    }
+
+    .wave {
+      display: flex;
+      flex-direction: row;
+      position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    .wavetext {
+      font-size: 50px;
+      min-width: 25px;
+      min-height: 25px;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+
+    .about {
+      background-color: rgb(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 0 20px;
+    }
+
+    .about p {
+      margin: 10px 0 15px;
+    }
+
+    a {
+      color: #ff2b6b;
+      transition: .3s;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+      color: #ffb0f8;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="waves"></div>
+  <div class="about">
+    <p>we're a gated gaming community of cool dudes</p>
+    <p><a href="javascript:animate()">recolor</a> | <a href="http://discord.func.zone">discord</a></p>
+  </div>
+  <script>
+    let text = "welcome to the func.zone";
+    let req,
+        wnum = 4,
+        omeg = 1.8,
+        ampl = 13,
+        yoff = 2.5,
+        time = 0;
+
+    let colors = [
+      ["ffffff", "ffd1f5", "ffa3eb", "ff7ae2", "ff52d9", "ff30d2"], // white  > pink
+      ["ff0095", "d620b0", "bb35c1", "a04ad3", "855fe4", "5c7fff"], // rose   > blue
+      ["faff5c", "d3ff5f", "b8ff61", "9eff64", "76ff67", "5cff69"], // yellow > green
+      ["ff230f", "ff580f", "ff7b0f", "ff9f0f", "ffd40f", "fff70f"], // red    > yellow
+      ["ffffff", "cccccc", "999999", "666666", "333333", "000000"], // white  > black
+      ["ffa11e", "d29d56", "b49a7c", "9697a1", "6992da", "4b8fff"], // orange > blue
+      ["bcff00", "babf40", "ba956a", "b98080", "b740bf", "b715ea"]  // green  > purple
+    ];
+
+    /* wavy text - modified from https://codepen.io/arthurvh/pen/YLwzbo */
+    function docify(str) {
+      let wcolors = colors[Math.floor(Math.random() * colors.length)];
+      let w = document.getElementById('waves');
+      w.innerHTML = "";
+      for (let i = wcolors.length - 1; i >= 0; i--) {
+        let el = document.createElement('div');
+        el.className = "wave";
+        for (let j = 0; j < str.length; j++) {
+          let inel = document.createElement('div');
+
+          inel.className = "wavetext";
+          inel.appendChild(document.createTextNode(str.charAt(j)));
+          inel.setAttribute('data-phi', j * Math.PI / (10 - wnum));
+          inel.style.transform = "";
+          inel.style.color = "#" + wcolors[i];
+
+          el.appendChild(inel);
+        }
+        w.appendChild(el);
+      }
+    }
+
+    let waves = document.getElementById('waves');
+
+    function update() {
+      if ((omeg * time) > (2 * Math.PI)) {
+        time = 0;
+      }
+      for (let i = 0; i < waves.childNodes.length; i++) {
+        let el = waves.childNodes[i];
+        for (let j = 0; j < el.childNodes.length; j++) {
+          let inel = el.childNodes[j];
+          let phi = inel.getAttribute('data-phi');
+          inel.style.transform = 'translateY(' + (ampl * Math.sin((omeg * time) + (phi / 2)) - (i * yoff)) + 'px)';
+        }
+      }
+      time += (6 / 100);
+      req = requestAnimationFrame(update);
+    }
+
+    function animate() {
+      docify(text);
+      if(req) {
+        cancelAnimationFrame(req);
+      }
+      requestAnimationFrame(update);
+    }
+
+    waves.innerHTML = "";
+
+    animate();
+  </script>
+</body>
+
+</html>

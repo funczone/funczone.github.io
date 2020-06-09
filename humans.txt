@@ -1,0 +1,16 @@
+# https://humanstxt.org
+
+/* REPOSITORY */
+  https://github.com/mechabubba/mechabubba.github.io
+
+/* TEAM */
+  // Developer + Owner
+  Steven (mechabubba)
+  Github: https://github.com/mechabubba
+  Steam: STEAM_0:1:48971987
+  Site: https://func.zone
+
+/* TECH */
+  Visual Studio Code: https://code.visualstudio.com/
+  WinSCP: https://winscp.net/eng/index.php
+  PuTTY: https://www.putty.org/
