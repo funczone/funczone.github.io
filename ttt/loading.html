@@ -75,7 +75,7 @@
             <div class="parent">
                 <div id="pic">
                     <div>
-                        <p>The preview doesn't seem to be loading.</p>
+                        <p><a href="javascript:doThing();">The</a> preview doesn't seem to be loading.</p>
                         <p>Let us know on our Discord server!</p>
                         <p class="c_semitrans">(this is meant for the gmod loading screen!)</p>
                     </div>
@@ -86,13 +86,17 @@
             </div>
         </main>
         <script>
+            let location = "http://func.site.nfoservers.com";
             function GameDetails(server, url, map, maxplayers, steamid, gamemode, volume, language) {
-                let img = `./assets/mp/${map}.jpg`;
+                let img = `${location}/assets/mp/${map}.jpg`;
                 let pic = document.getElementById("pic");
                 pic.innerHTML = "";
                 pic.style.background = `url(${img})`;
                 document.getElementById("mapname").innerHTML = `${map}`;
             }
+	    function doThing() {
+		GameDetails("ttt.func.zone", null, "ttt_xmas_nipperhouse", null, null, null, null, null);
+	    }
         </script>
     </body>
 </html>
