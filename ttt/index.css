@@ -1,0 +1,32 @@
+/* https://06000208.github.io/cndycrn/holyflex */
+.parent {
+    display: flex;
+    flex-direction: column;
+}
+
+body > .parent {
+    min-height: 100vh
+}
+  
+#main {
+    flex-direction: row;
+}
+  
+#main, #content {
+    flex-grow: 1;
+}
+  
+#left, #right {
+    min-width: 150px;
+    flex-shrink: 0;
+}
+  
+#main > div, #header, #footer {
+    padding: 16px;
+}
+
+@media only screen and (max-width: 700px) {
+    #main {
+        flex-direction: column;
+    }
+}

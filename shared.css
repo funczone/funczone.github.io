@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(34, 34, 34);
+}
+
+body {
+    font-family: 'Roboto Mono', Monospace, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 400;
+    text-align: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    color: #eeeeee;
+}
+
+a {
+    color: rgb(119, 166, 253);
+    border: solid 1px transparent;
+    text-decoration: none;
+    transition: 0.2s;
+}
+  
+a:hover, a:focus, a:active {
+    color: rgb(188, 219, 255);
+    text-decoration: underline;
+}
+
+/* colors */
+.c_b {
+    color: #7289DA;
+}
+
+.c_rgb {
+    color: #ff2b6b;
+    animation: rainbow_cycle 3.5s infinite linear;
+    transition: .3s;
+}
+
+.c_semitrans {
+    opacity: 0.5;
+}
+
+@keyframes rainbow_cycle {
+    12.5% {
+        color: #ff3737;
+    }
+    25% {
+        color: #ff8800;
+    }
+    37.5% {
+        color: #ffe605;
+    }
+    50% {
+        color: #09ff09;
+    }
+    62.5% {
+        color: #00b7ff;
+    }
+    75% {
+        color: #1919ff;
+    }
+    87.5% {
+        color: #911eca;
+    }
+    100% {
+        color: #ff2c9d;
+    }
+}

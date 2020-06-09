@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title id="title">ttt.func.zone</title>
+        <link rel="icon" id="favicon" type="image/png" href="assets/favicon.png" />
+        <link rel="canonical" href="https://func.zone/ttt/" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap">
+        <link rel="stylesheet" href="../shared.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" itemprop="author" content="mechabubba">
+        <meta name="description" itemprop="description" content="Semi-Vanilla TTT">
+        <meta name="theme-color" content="#550000">
+        <meta property="og:title" itemprop="name" content="ttt.func.zone" />
+        <meta property="og:site_name" content="func.zone" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Semi-Vanilla TTT">
+        <meta property="og:url" content="https://func.zone/ttt/" />
+        <meta name="twitter:title" content="ttt.func.zone" />
+        <meta name="twitter:description" content="Semi-Vanilla TTT">
+        <meta name="twitter:site" content="func.zone" />
+        <meta name="twitter:domain" content="https://func.zone" />
+        <style>
+            /* https://06000208.github.io/cndycrn/holyflex */
+            .parent {
+                display: flex;
+                flex-direction: column;
+            }
+
+            body > .parent {
+                min-height: 100vh
+            }
+
+            #header, #footer {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            #main {
+                flex-direction: row;
+            }
+
+            #main, #content {
+                flex-grow: 1;
+            }
+
+            #left {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            #content {
+                background-color: rgba(0, 0, 0, 0);
+            }
+
+            #left, #right {
+                min-width: 150px;
+                flex-shrink: 0;
+            }
+
+            #main > div, #header, #footer {
+                padding: 16px;
+            }
+
+            #quote {
+                font-style: italic;
+                color: rgba(255, 255, 255, 0.5)
+            }
+
+            @media only screen and (max-width: 700px) {
+                #main {
+                    flex-direction: column;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="parent">
+            <div id="header">
+                ttt.func.zone • <a href="steam://connect/ttt.func.zone">Click here to connect!</a>
+            </div>
+            <div id="main" class="parent">
+                <div id="left">left</div>
+                <div id="content">
+                    <div style="text-align: center;">welcogme to ttt.func.zone</div>
+                </div>
+            </div>
+            <div id="footer">
+                Copyright (c) 2020 func.zone lololol<span id="quote"> • "i dunno some dumb quote/motd here"</span>
+            </div>
+        </div>
+    </body>
+</html>
