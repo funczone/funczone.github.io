@@ -1,7 +1,7 @@
 # https://humanstxt.org
 
 /* REPOSITORY */
-  https://github.com/mechabubba/mechabubba.github.io
+  https://github.com/funczone/funczone.github.io
 
 /* TEAM */
   // Developer + Owner

@@ -29,25 +29,32 @@ a {
     text-decoration: none;
     transition: 0.2s;
 }
-  
 a:hover, a:focus, a:active {
     color: rgb(188, 219, 255);
     text-decoration: underline;
 }
 
-/* colors */
-.c_b {
-    color: #7289DA;
-}
+/* code boxes (thanks amber :D) */
+code { padding: 2px 4px; font-family: "Courier New", Courier, monospace; font-size: 15.6px; line-height: 1.1; color: #c7254e; background-color: rgba(44,44,44,0.7); border-radius: 4px; white-space: nowrap }
 
+/* colors */
+.c_r { color: #FF6961 }
+.c_y { color: #F1EA7F }
+.c_g { color: #77DD77 }
 .c_rgb {
-    color: #ff2b6b;
+    color: #FF2B6B;
     animation: rainbow_cycle 3.5s infinite linear;
     transition: .3s;
 }
+.c_semitrans { opacity: 0.5; }
+.c_supertrans { opacity: 0.25; }
 
-.c_semitrans {
-    opacity: 0.5;
+.c_blurp {
+    color: #7289DA;
+    transition: .3s;
+}
+.c_blurp:hover, .c_blurp:focus, .c_blurp:active {
+    color: #9aaae4;
 }
 
 @keyframes rainbow_cycle {
@@ -76,3 +83,9 @@ a:hover, a:focus, a:active {
         color: #ff2c9d;
     }
 }
+
+/* text modifiers */
+.t_underline { text-decoration: underline; }
+.t_bold { font-weight: bold; }
+.t_italics { font-style: italic; }
+.t_center { text-align: center; }

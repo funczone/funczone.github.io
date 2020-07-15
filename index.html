@@ -7,7 +7,6 @@
   <link rel="canonical" href="https://func.zone" />
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
   <link href="./shared.css" rel="stylesheet">
-  <!-- meta bullshit --->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" itemprop="author" content="mechabubba">
@@ -81,7 +80,7 @@
   <div id="waves"></div>
   <div class="about">
     <p>we're a gaming community of cool dudes</p>
-    <p><a href="./ttt/">ttt</a> | <a href="javascript:animate()">recolor</a> | <a href="http://discord.func.zone">discord</a></p>
+    <p><a href="./ttt/">ttt</a> | <a href="javascript:animate()">recolor</a> | <a href="http://discord.func.zone" class="c_blurp">discord</a></p>
   </div>
   <script>
     let text = "welcome to the func.zone";
@@ -107,10 +106,10 @@
       let wcolors = colors[Math.floor(Math.random() * colors.length)];
       let w = document.getElementById('waves');
       w.innerHTML = "";
-      for (let i = wcolors.length - 1; i >= 0; i--) {
+      for(let i = wcolors.length - 1; i >= 0; i--) {
         let el = document.createElement('div');
         el.className = "wave";
-        for (let j = 0; j < str.length; j++) {
+        for(let j = 0; j < str.length; j++) {
           let inel = document.createElement('div');
 
           inel.className = "wavetext";
@@ -128,12 +127,12 @@
     let waves = document.getElementById('waves');
 
     function update() {
-      if ((omeg * time) > (2 * Math.PI)) {
+      if((omeg * time) > (2 * Math.PI)) {
         time = 0;
       }
-      for (let i = 0; i < waves.childNodes.length; i++) {
+      for(let i = 0; i < waves.childNodes.length; i++) {
         let el = waves.childNodes[i];
-        for (let j = 0; j < el.childNodes.length; j++) {
+        for(let j = 0; j < el.childNodes.length; j++) {
           let inel = el.childNodes[j];
           let phi = inel.getAttribute('data-phi');
           inel.style.transform = 'translateY(' + (ampl * Math.sin((omeg * time) + (phi / 2)) - (i * yoff)) + 'px)';
