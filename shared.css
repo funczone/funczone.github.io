@@ -3,24 +3,15 @@
     -webkit-box-sizing: border-box;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
 html {
-    height: 100vh;
-    width: 100vw;
     background-color: rgb(34, 34, 34);
 }
 
 body {
     font-family: 'Roboto Mono', Monospace, sans-serif;
     font-size: 16px;
-    line-height: 1.4;
+    line-height: 1.2;
     font-weight: 400;
-    min-height: 100vh;
-    min-width: 100vw;
     color: #eeeeee;
 }
 
@@ -40,54 +31,47 @@ h3 {
 }
 
 /* code boxes (thanks amber :D) */
-code { padding: 2px 4px; font-family: "Courier New", Courier, monospace; font-size: 15.6px; line-height: 1.1; color: #c7254e; background-color: rgba(44, 44, 44, 0.7); border-radius: 4px; white-space: nowrap }
+code { padding: 2px 4px; font-family: "Courier New", Courier, monospace; font-size: 15.6px; line-height: 1.1; color: #c7254e; background-color: rgba(44,44,44,0.7); border-radius: 4px; white-space: nowrap }
 
 /* colors */
 .c_r { color: #FF6961 }
 .c_y { color: #F1EA7F }
 .c_g { color: #77DD77 }
-.c_rgb {
-    color: #FF2B6B;
-    animation: rainbow_cycle 3.5s infinite linear;
-    transition: .3s;
-}
-.c_semitrans { opacity: 0.5; }
-.c_supertrans { opacity: 0.25; }
+.c_blurp { color: #7289DA; transition: .3s; }
+.c_blurp:hover, .c_blurp:focus, .c_blurp:active { color: #9AAAE4; }
+.c_steam { color: #2A475E; }
+.c_steam:hover, .c_steam:focus, .c_steam:active { color: #3A6282; }
 
-.c_blurp {
-    color: #7289DA;
-    transition: .3s;
-}
-.c_blurp:hover, .c_blurp:focus, .c_blurp:active {
-    color: #9aaae4;
-}
-
+.c_rgb { color: #FF2B6B; animation: rainbow_cycle 3.5s infinite linear; transition: .3s; }
 @keyframes rainbow_cycle {
     12.5% {
-        color: #ff3737;
+        color: #FF3737;
     }
     25% {
-        color: #ff8800;
+        color: #FF8800;
     }
     37.5% {
-        color: #ffe605;
+        color: #FFe605;
     }
     50% {
-        color: #09ff09;
+        color: #09FF09;
     }
     62.5% {
-        color: #00b7ff;
+        color: #00b7FF;
     }
     75% {
-        color: #1919ff;
+        color: #1919FF;
     }
     87.5% {
-        color: #911eca;
+        color: #911ECA;
     }
     100% {
-        color: #ff2c9d;
+        color: #ff2C9D;
     }
 }
+
+.c_semitrans { opacity: 0.5; }
+.c_supertrans { opacity: 0.25; }
 
 /* text modifiers */
 .t_underline { text-decoration: underline; }
