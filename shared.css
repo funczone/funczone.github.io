@@ -8,6 +8,8 @@ html {
 }
 
 body {
+    min-height: 100vh;
+    min-width: 100vw;
     font-family: 'Roboto Mono', Monospace, sans-serif;
     font-size: 16px;
     line-height: 1.2;
@@ -21,6 +23,7 @@ a {
     text-decoration: none;
     transition: 0.2s;
 }
+
 a:hover, a:focus, a:active {
     color: rgb(188, 219, 255);
     text-decoration: underline;
@@ -31,7 +34,7 @@ h3 {
 }
 
 /* code boxes (thanks amber :D) */
-code { padding: 2px 4px; font-family: "Courier New", Courier, monospace; font-size: 15.6px; line-height: 1.1; color: #c7254e; background-color: rgba(44,44,44,0.7); border-radius: 4px; white-space: nowrap }
+code { padding: 2px 4px; font-family: "Courier New", Courier, monospace; font-size: 15.6px; line-height: 1.1; color: #c7254e; background-color: rgba(44, 44, 44, 0.7); border-radius: 4px; white-space: nowrap }
 
 /* colors */
 .c_r { color: #FF6961 }
