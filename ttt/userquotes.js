@@ -7,6 +7,7 @@ var userquotes = [
     "\"detective car\"", // credit: chevin + cobb
     "\"dEaD sErVeR\"",
     "\"Want to feature a quote or some other message here? Send it to Steven, and he'll add it! :D\"",
-    "<img src='../assets/ttt/man.png' style='height:16px;'>"
+    "<img src='../assets/ttt/man.png' style='height:16px;'>",
+    "\"@FuncZ on twitter!\""
 ];
 document.getElementById("quote").innerHTML = userquotes[Math.floor(Math.random() * userquotes.length)];
