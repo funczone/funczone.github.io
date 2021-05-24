@@ -1,48 +1,94 @@
-* {
-    box-sizing: border-box;
+/* Many thanks to 06000208 for some of the CSS snippets in this file, as well as the table CSS in ttt/index.html. */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&family=Roboto:wght@400&display=swap");
+
+:root {
+    --bg-color: rgb(34, 34, 34);
+    --bg-color-secondary: rgb(17, 17, 17);
+    --bg-color-tertiary: rgb(25, 25, 25);
+    --text-color: rgba(238, 238, 238, 1);
+    --text-color-secondary: rgba(135, 135, 135, 1);
+    --text-color-code: rgb(107, 212, 198);
+    --header-pad: 10px;
+    --logo-color: #ff00dc;
+
+    --color-red: rgb(255, 97, 97);
+    --color-yellow: rgb(255, 245, 109);
+    --color-green: rgb(136, 255, 136);
+    --color-blue: rgb(119, 166, 253);
+    --color-gray: rgb(175, 175, 175);
+    --color-steam: hsl(206, 38%, 40%);
+    --color-discord: rgb(114, 137, 218);
+
+    --rank-player: rgb(255, 204, 0);
+    --rank-member: rgb(102, 204, 0);
+    --rank-regular: rgb(102, 102, 255);
+    --rank-veteran: rgb(255, 115, 115);
+    --rank-elder: rgb(165, 123, 206);
+    --rank-func_zoner: rgb(204, 153, 153);
+
+    --rank-playtester: rgb(66, 199, 150);
+    --rank-programmer: rgb(118, 118, 225);
+    --rank-map_maker: rgb(255, 130, 24);
+    --rank-game_designer: rgb(161, 108, 216);
+    --rank-community_leader: rgb(204, 0, 102);
+    --rank-contest_king: rgb(240, 81, 50);
+
+    --rank-owner: rgb(255, 108, 181);
+    --rank-admin: rgb(255, 0, 0);
+    --rank-moderator: rgb(196, 90, 255);
+    --rank-officer: rgb(95, 95, 255);
+    --rank-recruit: rgb(51, 153, 255);
 }
 
-html {
-    background-color: rgb(34, 34, 34);
-}
+* { box-sizing: border-box; }
+
+* > :first-child { margin-top: 0 }
+* > :last-child { margin-bottom: 0 }
+
+[hidden] { display: none !important; }
+
+html { background-color: var(--bg-color); }
 
 body {
-    min-height: 100vh;
-    min-width: 100vw;
-    font-family: 'Roboto Mono', Monospace, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    /* font-family: "Roboto", sans-serif; */
+    font-family: "Roboto Mono", monospace, sans-serif;
     font-size: 16px;
     line-height: 1.2;
     font-weight: 400;
-    color: #eeeeee;
+    color: var(--text-color);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
 a {
-    color: rgb(119, 166, 253);
+    color: var(--color-blue);
     border: solid 1px transparent;
     text-decoration: none;
     transition: 0.2s;
 }
 
 a:hover, a:focus, a:active {
-    color: rgb(188, 219, 255);
+    filter: brightness(1.5);
     text-decoration: underline;
 }
 
-h3 {
-    margin: 25px auto auto auto;
+h1, h2, h3, h4, h5, h6 {
+    margin: 16px 0;
 }
 
-/* code boxes (thanks amber :D) */
-code { padding: 2px 4px; font-family: "Courier New", Courier, monospace; font-size: 15.6px; line-height: 1.1; color: #ce327b; background-color: rgba(0, 0, 0, 0.4); border-radius: 4px; white-space: nowrap }
+code { padding: 1px 3px; font-family: "Roboto Mono", monospace, sans-serif; font-size: 15.6px; line-height: 1.1; color: var(--text-color-code); background-color: rgba(0, 0, 0, 0.4); border-radius: 6px; white-space: nowrap }
 
-/* colors */
-.c_r { color: #FF6961 }
-.c_y { color: #F1EA7F }
-.c_g { color: #77DD77 }
-.c_blurp { color: #7289DA; transition: .3s; }
-.c_blurp:hover, .c_blurp:focus, .c_blurp:active { color: #9AAAE4; }
-.c_steam { color: #2A475E; }
-.c_steam:hover, .c_steam:focus, .c_steam:active { color: #3A6282; }
+.c_r { color: var(--color-red) }
+.c_y { color: var(--color-yellow) }
+.c_g { color: var(--color-green) }
+.c_blurp { color: var(--color-discord) }
+.c_steam { color: var(--color-steam) }
 
 .c_rgb { color: #FF2B6B; animation: rainbow_cycle 3.5s infinite linear; transition: .3s; }
 @keyframes rainbow_cycle {
@@ -71,12 +117,11 @@ code { padding: 2px 4px; font-family: "Courier New", Courier, monospace; font-si
         color: #ff2C9D;
     }
 }
-
 .c_semitrans { opacity: 0.5; }
 .c_supertrans { opacity: 0.25; }
 
-/* text modifiers */
 .t_underline { text-decoration: underline; }
 .t_bold { font-weight: bold; }
 .t_italics { font-style: italic; }
 .t_center { text-align: center; }
+.nosel { user-select: none; }

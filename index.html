@@ -1,160 +1,182 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <title>func.zone</title>
+        <link rel="icon" id="favicon" type="image/png" href="assets/favicon.png" />
+        <link rel="canonical" href="https://func.zone" />
+        <link rel="stylesheet" href="./shared.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" itemprop="author" content="mechabubba">
+        <meta name="description" itemprop="description" content="a gaming community">
+        <meta name="theme-color" content="#ff00dc">
+        <meta property="og:title" itemprop="name" content="func.zone">
+        <meta property="og:site_name" content="func.zone">
+        <meta property="og:type" content="website">
+        <meta property="og:description" content="Garry's Mod Gaming Community">
+        <meta property="og:url" content="https://func.zone/">
+        <style>
+            html {
+                background-color: var(--bg-color);
+            }
 
-<head>
-  <title id="title">func.zone</title>
-  <link rel="icon" id="favicon" type="image/png" href="assets/favicon.png" />
-  <link rel="canonical" href="https://func.zone" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
-  <link href="./shared.css" rel="stylesheet">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" itemprop="author" content="mechabubba">
-  <meta name="description" itemprop="description" content="a gated gaming community">
-  <meta name="theme-color" content="#ff00dc">
-  <meta property="og:title" itemprop="name" content="func.zone" />
-  <meta property="og:site_name" content="func.zone" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="a gaming community">
-  <meta property="og:url" content="https://func.zone" />
-  <meta name="twitter:title" content="func.zone" />
-  <meta name="twitter:description" content="a gaming community">
-  <meta name="twitter:site" content="func.zone" />
-  <meta name="twitter:domain" content="https://func.zone" />
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: center;
-    }
+            body {
+                display: flex;
+                flex-direction: column;
+            }
 
-    #waves {
-      width: auto;
-      height: auto;
-    }
+            #header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            #header, #footer {
+                background-color: var(--bg-color-secondary);
+                padding: var(--header-pad);
+            }
+            #header > *, #footer > * {
+                vertical-align: center;
+            }
 
-    .wave {
-      display: flex;
-      flex-direction: row;
-      position: absolute;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-    }
+            #main {
+                display: flex;
+                flex-grow: 1;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
 
-    .wavetext {
-      font-size: 50px;
-      min-width: 25px;
-      min-height: 25px;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-    }
+            #wlayers {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                height: 100px;
+                margin: 100px 0;
+            }
+            .wlayer {
+                display: flex;
+                flex-direction: row;
+                position: absolute;
+            }
 
-    .about {
-      background-color: rgb(0, 0, 0, 0.3);
-      text-align: center;
-      border-radius: 10px;
-      padding: 0 20px;
-    }
+            /*
+            So, I was experimenting with viewport units. 
 
-    .about p {
-      margin: 10px 0 15px;
-    }
+            The goal is to scale the text down on lower resolutions like phone screens *correctly* (ie, it looks the same on all resolutions and zooms).
+            I have only been semi-unsuccessful doing this. Someone smarter than me can definitely make this work...
+            
+            For now, its going to be kinda ugly looking on lower resolutions. Sorry :p
+            */
+            .wtext {
+                font-family: 'Roboto Mono', Monospace, sans-serif;
+                font-size: 3vw;  /* 50px */
+                min-width: 20px; /* 20px */
+            }
 
-    a {
-      color: #ff2b6b;
-      transition: .3s;
-    }
+            .blurb {
+                width: 400px;
+                background-color: rgb(0, 0, 0, 0.3);
+                border-style: solid;
+                border-width: 1px;
+                border-radius: 12px;
+                border-color: rgb(225, 225, 225);
+                padding: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <span style="color: var(--logo-color)"><img src="assets/cordon.png" style="height: 16px"> func.zone</span>
+            <span><a href="/discord/" class="c_blurp">Discord</a> • <a href="/steam/" class="c_steam">Steam</a> • <a href="/github/">Github</a> • <a href="javascript:recolor()">Recolor</a></span>
+        </div>
+        <div id="main">
+            <div id="wlayers"></div>
+            <div class="blurb t_center">
+                <p>We're a Garry's Mod gaming community. You can join us by joining our Discord guild or our Steam group in the links above.</p>
+                <hr>
+                <p>You can view our TTT servers page <a href="/ttt/">here!</a></p>
+            </div>
+        </div>
+        <div id="footer">Copyright (c) 2021 func.zone <span class="c_r"><3</span></div>
+        <script>
+            /* wavy text - modified from https://codepen.io/arthurvh/pen/YLwzbo */
+            let text = "welcome to the func.zone";
+            let wnum = 4, omeg = 1.8, ampl = 16, yoff = 3, length = 8, ta = (3 / 50); // 4, 1.8, 13, 3, 8
+            const colors = [
+                ["ffffff", "ff30d2"],
+                ["ff0095", "5c7fff"],
+                ["faff5c", "00a378"],
+                ["fff70f", "ff230f"],
+                ["ffffff", "000000"],
+                ["ffa11e", "4138fc"],
+                ["bcff00", "710394"]
+            ];
+            let time = 0, ci = 0, req;
 
-    a:hover,
-    a:focus,
-    a:active {
-      color: #ffb0f8;
-    }
-  </style>
-</head>
+            const h2rgb = v => [parseInt(`0x${v.substring(0, 2)}`), parseInt(`0x${v.substring(2, 4)}`), parseInt(`0x${v.substring(4, 6)}`)];
+            function gradient(h1, h2) {
+                const rgb1 = h2rgb(h1), rgb2 = h2rgb(h2);
+                let _colors = [];
+                for(let i = 0; i < length; i++) {
+                    let p = i / length;
+                    let r = Math.floor(rgb1[0] * (1 - p) + rgb2[0] * p).toString(16).padStart(2, "0");
+                    let g = Math.floor(rgb1[1] * (1 - p) + rgb2[1] * p).toString(16).padStart(2, "0");
+                    let b = Math.floor(rgb1[2] * (1 - p) + rgb2[2] * p).toString(16).padStart(2, "0");
+                    _colors.push(r + g + b);
+                }
+                return _colors;
+            }
 
-<body>
-  <div id="waves"></div>
-  <div class="about">
-    <p>we're a gaming community of cool dudes</p>
-    <p><a href="./ttt/">ttt</a> | <a href="javascript:animate()">recolor</a> | <a href="http://func.zone/discord/" class="c_blurp">discord</a></p>
-  </div>
-  <script>
-    let text = "welcome to the func.zone";
-    let req,
-        wnum = 4,
-        omeg = 1.8,
-        ampl = 13,
-        yoff = 2.5,
-        time = 0;
+            function docify(str) {
+                let layers = document.getElementById('wlayers');
+                layers.innerHTML = "";
+                for(let i = 0; i < length; i++) {
+                    let el = document.createElement('div');
+                    el.className = "wlayer";
+                    for(let j = 0; j < str.length; j++) {
+                        let inel = document.createElement('span');
+                        inel.className = "wtext nosel";
+                        inel.appendChild(document.createTextNode(str[j]));
+                        inel.setAttribute('data-phi', j * Math.PI / (10 - wnum));
+                        el.appendChild(inel);
+                    }
+                    layers.appendChild(el);
+                }
+            }
 
-    let colors = [
-      ["ffffff", "ffd1f5", "ffa3eb", "ff7ae2", "ff52d9", "ff30d2"], // white  > pink
-      ["ff0095", "d620b0", "bb35c1", "a04ad3", "855fe4", "5c7fff"], // rose   > blue
-      ["faff5c", "d3ff5f", "b8ff61", "9eff64", "76ff67", "5cff69"], // yellow > green
-      ["ff230f", "ff580f", "ff7b0f", "ff9f0f", "ffd40f", "fff70f"], // red    > yellow
-      ["ffffff", "cccccc", "999999", "666666", "333333", "000000"], // white  > black
-      ["ffa11e", "d29d56", "b49a7c", "9697a1", "6992da", "4b8fff"], // orange > blue
-      ["bcff00", "babf40", "ba956a", "b98080", "b740bf", "b715ea"]  // green  > purple
-    ];
+            let wlayers = document.getElementById('wlayers');
 
-    /* wavy text - modified from https://codepen.io/arthurvh/pen/YLwzbo */
-    function docify(str) {
-      let wcolors = colors[Math.floor(Math.random() * colors.length)];
-      let w = document.getElementById('waves');
-      w.innerHTML = "";
-      for(let i = wcolors.length - 1; i >= 0; i--) {
-        let el = document.createElement('div');
-        el.className = "wave";
-        for(let j = 0; j < str.length; j++) {
-          let inel = document.createElement('div');
+            function recolor(gi) {
+                ci = gi ? gi : (ci + 1) % colors.length;
+                let cols = colors[ci];
+                let grad = gradient(cols[1], cols[0]);
+                for(let i = 0; i < wlayers.childNodes.length; i++) {
+                    let el = wlayers.childNodes[i];
+                    for(let j = 0; j < el.childNodes.length; j++) {
+                        let inel = el.childNodes[j];
+                        inel.style.color = `#${grad[i]}`;
+                    }
+                }
+            }
 
-          inel.className = "wavetext";
-          inel.appendChild(document.createTextNode(str.charAt(j)));
-          inel.setAttribute('data-phi', j * Math.PI / (10 - wnum));
-          inel.style.transform = "";
-          inel.style.color = "#" + wcolors[i];
+            function update() {
+                if((omeg * time) > (2 * Math.PI)) time = 0;
+                for(let i = 0; i < wlayers.childNodes.length; i++) {
+                    let el = wlayers.childNodes[i];
+                    for(let j = 0; j < el.childNodes.length; j++) {
+                        let inel = el.childNodes[j];
+                        let phi = inel.getAttribute('data-phi');
+                        inel.style.transform = 'translateY(' + (ampl * Math.sin((omeg * time) + (phi / 2)) - (i * yoff)) + 'px)';
+                    }
+                }
+                time += ta;
+                req = requestAnimationFrame(update);
+            }
 
-          el.appendChild(inel);
-        }
-        w.appendChild(el);
-      }
-    }
-
-    let waves = document.getElementById('waves');
-
-    function update() {
-      if((omeg * time) > (2 * Math.PI)) {
-        time = 0;
-      }
-      for(let i = 0; i < waves.childNodes.length; i++) {
-        let el = waves.childNodes[i];
-        for(let j = 0; j < el.childNodes.length; j++) {
-          let inel = el.childNodes[j];
-          let phi = inel.getAttribute('data-phi');
-          inel.style.transform = 'translateY(' + (ampl * Math.sin((omeg * time) + (phi / 2)) - (i * yoff)) + 'px)';
-        }
-      }
-      time += (6 / 100);
-      req = requestAnimationFrame(update);
-    }
-
-    function animate() {
-      docify(text);
-      if(req) {
-        cancelAnimationFrame(req);
-      }
-      requestAnimationFrame(update);
-    }
-
-    waves.innerHTML = "";
-
-    animate();
-  </script>
-</body>
-
+            docify(text);
+            recolor(Math.floor(Math.random() * colors.length));
+            requestAnimationFrame(update);
+        </script>
+    </body>
 </html>

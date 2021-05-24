@@ -6,11 +6,18 @@
 /* TEAM */
   // Developer + Owner
   Steven (mechabubba)
-  Github: https://github.com/mechabubba
+  Github: https://github.com/mechabubba and https://github.com/funczone
   Steam: STEAM_0:1:48971987
-  Site: https://func.zone
 
 /* TECH */
   Visual Studio Code: https://code.visualstudio.com/
   WinSCP: https://winscp.net/eng/index.php
   PuTTY: https://www.putty.org/
+
+/* THANKS */
+Many thanks go out to the following people.
+- The func.zone staff for keeping things under control.
+- rom for relentless weapon balancing, code help, general work over the years, and being a generally cool guy.
+- amber (06000208) for many *many* code snippits, code help, general work, and guidance over the years. Also being generally cool.
+- Everyone mentioned and unmentioned for dealing with bullshit from me.
+- chumtoad, my beloved

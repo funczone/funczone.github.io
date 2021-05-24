@@ -4,7 +4,6 @@
         <title>ttt.func.zone</title>
         <link rel="icon" id="favicon" type="image/png" href="https://func.zone/assets/favicon.png">
         <link rel="canonical" href="https://func.zone/ttt/">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&amp;display=swap">
         <link rel="stylesheet" href="../shared.css">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,42 +15,45 @@
         <meta property="og:type" content="website">
         <meta property="og:description" content="Semi-Vanilla TTT">
         <meta property="og:url" content="https://func.zone/ttt/">
-        <meta name="twitter:title" content="ttt.func.zone">
-        <meta name="twitter:description" content="Semi-Vanilla TTT">
-        <meta name="twitter:site" content="func.zone">
-        <meta name="twitter:domain" content="https://func.zone">
         <style>
-            html, body {
-                margin: 0;
-                padding: 0;
+            html {
+                background-color: var(--bg-color);
             }
+
             body {
-                overflow-x: hidden;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
             }
+
             #header, #footer {
-                background-color: rgba(0, 0, 0, 0.5);
-                padding: 16px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                background-color: var(--bg-color-secondary);
+                padding: var(--header-pad);
             }
+            #header > *, #footer > * {
+                vertical-align: center;
+            }
+
             #main {
-                display: table;
+                display: flex;
+                flex-grow: 1;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
             }
-            #left, #content {
-                display: table-cell;
-                padding: 0px 25px;
+
+            #sidebar {
+                background-color: var(--bg-color-tertiary);
+                width: 260px;
+                height: 100%;
             }
-            #left {
-                background-color: rgba(0, 0, 0, 0.3);
-                max-width: 200px;
-                word-wrap: break-word;
-            }
-            #quote {
-                display: inline;
-                font-style: italic;
-                color: rgba(255, 255, 255, 0.5)
-            }
-            li {
-                padding: 0 0 3px 0;
-            }
+            #sidebar, #content { padding: 16px; }
+
+            #quote { color: var(--text-color-secondary) }
+
             #alert {
                 display: inline-block;
                 width: auto;
@@ -59,23 +61,49 @@
                 border-radius: 8px;
                 background-color: rgba(46, 102, 255, 0.35);
             }
-            #alert > ul { margin: 4px 0 0 0; }
+            #alert > ul { margin: 4px 0; }
+
+            h2 { color: var(--color-yellow); }
+            h3 { color: var(--color-gray); }
+            li { margin-bottom: 4px; }
+            ol, ul { margin: 8px 0; }
+            hr { margin: 12px 0; }
+            table, th, td {
+                border: none;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: .4em;
+                border-bottom: 3px solid var(--text-color-secondary);
+            }
+            details > *:not(summary) { margin-left: 20px; }
+            summary {
+                color: var(--color-blue);
+                transition: .2s;
+                cursor: pointer;
+            }
+            summary:hover, summary:focus, summary:active {
+                filter: brightness(1.5);
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
         <div id="header">
-            <span>ttt.func.zone &bull; <a href="steam://connect/ttt.func.zone">Click here to connect!</a></span>
+            <span style="color: var(--logo-color)"><a href="../"><img src="../assets/cordon.png" style="height: 16px"></a> ttt.func.zone</span>
+            <span class="t_bold"><a href="steam://connect/ttt.func.zone">Click here to connect!</a></span>
         </div>
         <div id="main">
-            <div id="left">
-                <a href="#welcome">MOTD</a>
-                <ul>
+            <div id="sidebar">
+                <span>MOTD</span>
+                <ol>
+                    <li><a href="#welcome">Welcome!</a></li>
                     <li><a href="#rules">Rules</a></li>
                     <li><a href="#user_ranks">User Ranks</a></li>
-                    <li><a href="#other_information">Other Information</a></li>
-                </ul>
+                    <li><a href="#server_info">Server Info</a></li>
+                    <li><a href="#changelog">Changelog</a></li>
+                </ol>
                 <hr>
-		<p>Join us elsewhere!</p>
                 <ul>
                     <li><a href="https://func.zone/steam" class="c_steam">Steam Group</a></li>
                     <li><a href="https://func.zone/discord" class="c_blurp">Discord Server</a></li>
@@ -83,68 +111,143 @@
             </div>
             <div id="content">
                 <h1 class="t_underline" id="welcome">Welcome to ttt.func.zone!</h1>
-                <p>Yo! We're a TTT community ran by experienced players and built on enjoyable and casual gameplay.</p>
-                <p>If you like what we got going here, be sure to join our Steam group at <a href="https://func.zone/steam" class="c_steam">https://func.zone/steam</a>, and join our Discord server at <a href="http://func.zone/discord" class="c_blurp">http://func.zone/discord</a>.</p>
-                <!-- <div id="alert">
-                    <img src='../assets/silkicons/rosette.png' style='height:16px;vertical-align:middle;'> <span class="t_bold t_underline">The X-mas Screenshot Contest 2 (TXSC2) is in full effect!</span>
+                <p>This is the func.zone TTT server, ran by experienced players, and built on enjoyable, casual, and semi-vanilla gameplay.</p>
+                <p>If you like what we got going here, you can learn more about our community at our home page, <a href="../">https://func.zone</a>. Be sure to also join our Steam group at <a href="../steam/" class="c_steam">https://func.zone/steam</a>, and join our Discord server at <a href="../discord/" class="c_blurp">http://func.zone/discord</a>.</p>
+                <!--
+                <div id="alert">
+                    <img src="../assets/silkicons/rosette.png" style="height: 16px; vertical-align: middle;"> <span class="t_bold t_underline">The X-mas Screenshot Contest 2 (TXSC2) is in full effect!</span>
                     <ul>
                         <li>Snap screenshots of our server and submit them to various categories to win ingame ranks and prizes.</li>
                         <li>Change your playermodel using concommand <code>playermodel_selector</code>!</li>
                         <li>Enable and disable your viewmodel with concommands <code>vm_enable</code> and <code>vm_disable</code>!</li>
                     </ul>
                     <span class="c_r t_bold">Event ends December 31st!</span> Learn more about how to participate on our <a href="https://func.zone/discord/" class="c_blurp">Discord server!</a>
-                </div> -->
-                <h3 class="c_y" id="rules">Rules</h3>
-                <h4>Gameplay Rules</h4>
+                </div>
+                -->
+                <h2 id="rules">Rules</h2>
+                <h3>Gameplay Rules</h3>
                 <ol>
                     <li><span class="c_r">No random deathmatch</span> (also known as RDM).</li>
                     <li><span class="c_r">No traitor baiting</span> (also known as T-baiting), or otherwise fooling people into thinking you're a traitor.</li>
                     <li><span class="c_r">No ghosting, metagaming, or teaming.</span> Generally, transmitting information about the game outside of the game is against the rules.</li>
                     <li><span class="c_r">No NSFW sprays.</span> Generally, anything with genitals is not allowed.</li>
                     <li><span class="c_r">Claiming an area or areas is not allowed.</span></li>
-                    <li>On that note, <span class="c_g">you ARE allowed to warn people away,</span> however <span class="c_r">please adhere to our restrictions.</span> Theres atleast a two second delay between each warn, and there must be atleast three warns. After this, you're allowed to kill whoever isn't adhering to the warning. Don't use this as an excuse for RDM.</li>
+                    <li>On that note, <span class="c_g">you ARE allowed to warn people away,</span> however <span class="c_r">please try to adhere to our restrictions.</span> Theres atleast a two second delay between each warn, and there must be atleast three warns. After this, you're allowed to kill whoever isn't adhering to the warning. Don't use this as an excuse for RDM.</li>
                 </ol>
-                <h4>Social Conduct</h4>
+                <h3>Social Conduct</h3>
                 <ol>
                     <li><span class="c_r">No discriminatory speech or excessive toxicity.</span> This is on the basis of race, gender, sexuality, etc. Of course, jokes in good faith that poke jabs at certain groups are fine, but don't be over the top with this leeway.</li>
                     <li><span class="c_r">No spamming.</span> Micspamming is okay if you keep it to a minimum. Generally, don't be obnoxious or overbearing.</li>
                     <li><span class="c_r">No NSFW content.</span> This shares the same restrictions as sprays.</li>
-                    <li><span class="c_r">Don't make threats against our server.</span> It won't be tolerated - in fact, you'll be publically clowned if you get any funny ideas.</li>
+                    <li><span class="c_r">Don't make threats against our server or our users.</span> It won't be tolerated. <span class="c_supertrans">Yes, we really have to write this.</span></li>
                 </ol>
-                <h3 class="c_y" id="user_ranks">User Ranks</h3>
+                <h2 id="user_ranks">User Ranks</h2>
                 <p>Some ranks are time-based and given by how long you've played on the server. You can look at how long you've been playing via the utime addon, aka the blue panel usually in the top right of your screen.</p>
                 <ul>
-                    <li><span style="color:rgb(255, 204, 0)">Player</span> - 2 hours</li>
-                    <li><span style="color: rgb(102, 204, 0)">Member</span> - 8 hours</li>
-                    <li><span style="color: rgb(102, 102, 255)">Regular</span> - 16 hours</li>
-                    <li><span style="color: rgb(255, 102, 102)">Veteran</span> - 24 hours</li>
-                    <li><span style="color: rgb(153, 102, 204)">Elder</span> - 64 hours</li>
-                    <li><span style="color: rgb(204, 153, 153)">func_zoner</span> - 128 hours</li>
+                    <li><span style="color: var(--rank-player)">Player</span> - 2 hours</li>
+                    <li><span style="color: var(--rank-member)">Member</span> - 8 hours</li>
+                    <li><span style="color: var(--rank-regular)">Regular</span> - 16 hours</li>
+                    <li><span style="color: var(--rank-veteran)">Veteran</span> - 24 hours</li>
+                    <li><span style="color: var(--rank-elder)">Elder</span> - 64 hours</li>
+                    <li><span style="color: var(--rank-func_zoner)">func_zoner</span> - 128 hours</li>
                 </ul>
                 <p>If you're actively part of the community, other ranks are given if you create a certain type of content.</p>
                 <ul>
-                    <li><span style="color: rgb(66, 199, 150)">Playtester</span> - Someone who helps out with testing new content on specified playtesting days.</li>
-                    <li><span style="color: rgb(118, 118, 225)">Programmer</span> - Someone who has made custom addons, such as scripts or weapons.</li>
-                    <li><span style="color: rgb(255, 130, 24)">Map Maker</span> - Someone who has made a custom map and has it on the server.</li>
-                    <li><span style="color: rgb(161, 108, 216)">Game Designer</span> - Someone actively helping and giving input on the balance of the game.</li>
-                    <li><span style="color: rgb(204, 0, 102)">Community Leader</span> - Someone who qualifies for 3+ roles above. Has sway in the future of the server.</li>
+                    <li><span style="color: var(--rank-playtester)">Playtester</span> - Someone who helps out with testing new content on specified playtesting days.</li>
+                    <li><span style="color: var(--rank-programmer)">Programmer</span> - Someone who has made custom addons, such as scripts or weapons.</li>
+                    <li><span style="color: var(--rank-map_maker)">Map Maker</span> - Someone who has made a custom map and has it on the server.</li>
+                    <li><span style="color: var(--rank-game_designer)">Game Designer</span> - Someone actively helping and giving input on the balance of the game.</li>
+                    <li><span style="color: var(--rank-community_leader)">Community Leader</span> - Someone who qualifies for 3+ roles above. Has sway in the future of the server.</li>
                 </ul>
                 <p>Other ranks are given if you take part in or help the server directly.</p>
                 <ul>
                     <li><span class="c_rgb">Donator</span> - Someone who has donated money to help keep the server running. Thank you!</li>
-                    <li><span style="color: rgb(240, 81,50)">Contest King</span> - A winner of 3+ of our contests.</li>
+                    <li><span style="color: var(--rank-contest_king)">Contest King</span> - A winner of 3+ of our contests.</li>
                 </ul>
-                <h3 class="c_y" id="other_information">Other Information</h3>
-                <h4>Blood Moons</h4>
-                <p>Fridays and Sundays are our servers <span class="t_bold c_r">Blood Moons;</span> an event that makes the server a little more chaotic. During this event, you'll notice a higher prop power, extra gore, and reduced visibility at different healths. Be sure to play more carefully, or become a victim!</p>
-                <h4>Misc. Information</h4>
+                <h2 id="server_info">Server Info</h2>
+                <h3>Blood Moons</h3>
+                <p>Fridays and Sundays are our servers <span class="t_bold c_r">Blood Moons;</span> an event that makes the server a little more chaotic. During this event, you'll notice a higher prop power, extra gore, and reduced visibility at lower health. Be sure to play more carefully, or become a victim!</p>
+                <h3>Staff Information</h3>
                 <p>All staff members have their names colored in the scoreboard; <span class="t_bold">anyone without it isn't a staff member!</span></p>
-                <p>If you feel that any of the staff are abusing their power, or if you've otherwise had issues, contact Steven <code>STEAM_0:1:48971987</code> on Steam or on the Discord server.</p>
+                <details>
+                    <summary>Staff Members</summary>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>SteamID</th>
+                            <th>Rank</th>
+                        </tr>
+                        <tr>
+                            <td>Steven</td>
+                            <td><code>STEAM_0:1:48971987</code></td>
+                            <td style="color: var(--rank-owner)">Owner</td>
+                        </tr>
+                        <tr>
+                            <td>Bunnies2000</td>
+                            <td><code>STEAM_0:0:77968520</code></td>
+                            <td style="color: var(--rank-admin)">Admin</td>
+                        </tr>
+                        <tr>
+                            <td>Smivvie</td>
+                            <td><code>STEAM_0:1:62930903</code></td>
+                            <td style="color: var(--rank-admin)">Admin</td>
+                        </tr>
+                        <tr>
+                            <td>dee</td>
+                            <td><code>STEAM_0:0:163866777</code></td>
+                            <td style="color: var(--rank-moderator)">Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>Kenneh</td>
+                            <td><code>STEAM_0:0:56458629</code></td>
+                            <td style="color: var(--rank-moderator)">Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>papi sabes</td>
+                            <td><code>STEAM_0:1:53567988</code></td>
+                            <td style="color: var(--rank-moderator)">Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>Pink55</td>
+                            <td><code>STEAM_0:0:63496873</code></td>
+                            <td style="color: var(--rank-moderator)">Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>Sonichackedyou</td>
+                            <td><code>STEAM_0:1:65398114</code></td>
+                            <td style="color: var(--rank-moderator)">Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>Squallhardt</td>
+                            <td><code>STEAM_0:0:537785561</code></td>
+                            <td style="color: var(--rank-moderator)">Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>thatgingeydude</td>
+                            <td><code>STEAM_0:1:172161341</code></td>
+                            <td style="color: var(--rank-moderator)">Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>Tori</td>
+                            <td><code>STEAM_0:1:63823966</code></td>
+                            <td style="color: var(--rank-moderator)">Moderator</td>
+                        </tr>
+                        <tr>
+                            <td>Sticraupl</td>
+                            <td><code>STEAM_0:1:231638390</code></td>
+                            <td style="color: var(--rank-officer)">Officer</td>
+                        </tr>
+                    </table>
+                </details>
+                <p>If you feel that any of the staff are abusing their power, or if you've otherwise had issues, please contact Steven <code>STEAM_0:1:48971987</code> on Steam or on our Discord server.</p>
+                <h2 id="changelog">Changelog</h2>
+                <p>Nothing to note yet! This will be updated as time goes on.</p>
+                <h5 style="color: var(--color-gray)" id="changelog_052321">05/23/21 - Initial (func.zone Site Revamp)</h5>
             </div>
         </div>
         <div id="footer">
-            <span>Copyright (c) 2020 func.zone &bull; </span>
-            <div id="quote">"For whatever reason, a quote hasn't loaded. See them all <a href='https://github.com/funczone/funczone.github.io/blob/master/ttt/userquotes.js'>here!</a>"</div>
+            <span>Copyright (c) 2021 func.zone</span>
+            <span id="quote" class="t_italics">"For whatever reason, a quote hasn't loaded. See them all <a href='https://github.com/funczone/funczone.github.io/blob/master/ttt/userquotes.js'>here!</a>"</span>
         </div>
         <script src="userquotes.js"></script>
     </body>
