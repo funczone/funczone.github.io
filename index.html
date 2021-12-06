@@ -16,6 +16,11 @@
         <meta property="og:description" content="Garry's Mod Gaming Community">
         <meta property="og:url" content="https://func.zone/">
         <style>
+            :root {
+                --wavetext-size: 50px;
+                --wavetext-width: 20px;
+            }
+
             html {
                 background-color: var(--bg-color);
             }
@@ -60,18 +65,10 @@
                 position: absolute;
             }
 
-            /*
-            So, I was experimenting with viewport units. 
-
-            The goal is to scale the text down on lower resolutions like phone screens *correctly* (ie, it looks the same on all resolutions and zooms).
-            I have only been semi-unsuccessful doing this. Someone smarter than me can definitely make this work...
-            
-            For now, its going to be kinda ugly looking on lower resolutions. Sorry :p
-            */
             .wtext {
                 font-family: 'Roboto Mono', Monospace, sans-serif;
-                font-size: 3vw;  /* 50px */
-                min-width: 20px; /* 20px */
+                font-size: var(--wavetext-size);  /* 50px */
+                min-width: var(--wavetext-width); /* 20px */
             }
 
             .blurb {
@@ -99,10 +96,10 @@
             </div>
         </div>
         <div id="footer">Copyright (c) 2021 func.zone <span class="c_r"><3</span></div>
+        <script src="snowstorm-min.mod.js"></script>
         <script>
             /* wavy text - modified from https://codepen.io/arthurvh/pen/YLwzbo */
-            let text = "welcome to the func.zone";
-            let wnum = 4, omeg = 1.8, ampl = 16, yoff = 3, length = 8, ta = (3 / 50); // 4, 1.8, 13, 3, 8
+            const text = "welcome to the func.zone";
             const colors = [
                 ["ffffff", "ff30d2"],
                 ["ff0095", "5c7fff"],
@@ -112,25 +109,24 @@
                 ["ffa11e", "4138fc"],
                 ["bcff00", "710394"]
             ];
-            let time = 0, ci = 0, req;
+            const _wnum = 4, _omeg = 1.8, _ampl = 16, _yoff = 3, _length = 8, _ta = (3 / 50), _time = 0, _ci = 0;
+            let wnum = 4, omeg = 1.8, ampl = 16, yoff = 3, length = 8, ta = (3 / 50), time = 0, ci = 0;
 
             const h2rgb = v => [parseInt(`0x${v.substring(0, 2)}`), parseInt(`0x${v.substring(2, 4)}`), parseInt(`0x${v.substring(4, 6)}`)];
             function gradient(h1, h2) {
-                const rgb1 = h2rgb(h1), rgb2 = h2rgb(h2);
-                let _colors = [];
+                const rgb1 = h2rgb(h1), rgb2 = h2rgb(h2), colors = [];
                 for(let i = 0; i < length; i++) {
                     let p = i / length;
                     let r = Math.floor(rgb1[0] * (1 - p) + rgb2[0] * p).toString(16).padStart(2, "0");
                     let g = Math.floor(rgb1[1] * (1 - p) + rgb2[1] * p).toString(16).padStart(2, "0");
                     let b = Math.floor(rgb1[2] * (1 - p) + rgb2[2] * p).toString(16).padStart(2, "0");
-                    _colors.push(r + g + b);
+                    colors.push(r + g + b);
                 }
-                return _colors;
+                return colors;
             }
 
+            const wlayers = document.getElementById('wlayers');
             function docify(str) {
-                let layers = document.getElementById('wlayers');
-                layers.innerHTML = "";
                 for(let i = 0; i < length; i++) {
                     let el = document.createElement('div');
                     el.className = "wlayer";
@@ -141,42 +137,51 @@
                         inel.setAttribute('data-phi', j * Math.PI / (10 - wnum));
                         el.appendChild(inel);
                     }
-                    layers.appendChild(el);
+                    wlayers.appendChild(el);
                 }
             }
 
-            let wlayers = document.getElementById('wlayers');
+            function change(func) {
+                for(let i = 0; i < wlayers.childNodes.length; i++) {
+                    const el = wlayers.childNodes[i];
+                    for(let j = 0; j < el.childNodes.length; j++) {
+                        const inel = el.childNodes[j]; 
+                        func(inel, i, j);
+                    }
+                }
+            }
 
             function recolor(gi) {
                 ci = gi ? gi : (ci + 1) % colors.length;
-                let cols = colors[ci];
-                let grad = gradient(cols[1], cols[0]);
-                for(let i = 0; i < wlayers.childNodes.length; i++) {
-                    let el = wlayers.childNodes[i];
-                    for(let j = 0; j < el.childNodes.length; j++) {
-                        let inel = el.childNodes[j];
-                        inel.style.color = `#${grad[i]}`;
-                    }
-                }
+                let grad = gradient(colors[ci][1], colors[ci][0]);
+                change((elem, i, j) => elem.style.color = `#${grad[i]}`);
             }
 
             function update() {
                 if((omeg * time) > (2 * Math.PI)) time = 0;
-                for(let i = 0; i < wlayers.childNodes.length; i++) {
-                    let el = wlayers.childNodes[i];
-                    for(let j = 0; j < el.childNodes.length; j++) {
-                        let inel = el.childNodes[j];
-                        let phi = inel.getAttribute('data-phi');
-                        inel.style.transform = 'translateY(' + (ampl * Math.sin((omeg * time) + (phi / 2)) - (i * yoff)) + 'px)';
-                    }
-                }
+                change((elem, i, j) => {
+                    let phi = elem.getAttribute('data-phi');
+                    elem.style.transform = 'translateY(' + (ampl * Math.sin((omeg * time) + (phi / 2)) - (i * yoff)) + 'px)';
+                })
                 time += ta;
-                req = requestAnimationFrame(update);
+                requestAnimationFrame(update);
             }
 
             docify(text);
             recolor(Math.floor(Math.random() * colors.length));
             requestAnimationFrame(update);
+
+            let old_dpi = window.devicePixelRatio;
+            const root = document.documentElement;
+            window.onresize = () => {
+                const dpi = window.devicePixelRatio;
+                if(dpi !== old_dpi) {
+                    old_dpi = dpi;
+                    yoff = _yoff / dpi;
+                    root.style.setProperty("--wavetext-size", `calc(50px / ${dpi ** -0.1})`); // experimenting...
+                    root.style.setProperty("--wavetext-width", `calc(20px / ${dpi})`);
+                }
+            }
         </script>
     </body>
 </html>

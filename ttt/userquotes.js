@@ -10,6 +10,7 @@ let userquotes = [
     "\"Not @FuncZ on twitter!\"",
     "\"Does anyone actually read these?\"",
     "\"Populate!\"",
-    "\"only func inside anime girls\""
+    "\"only func inside anime girls\"",
+    "L 11/25/2020 - 00:14:55: server_cvar: \"sv_cheats\" \"1\""
 ];
 document.getElementById("quote").innerHTML = userquotes[Math.floor(Math.random() * userquotes.length)];
