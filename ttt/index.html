@@ -45,6 +45,15 @@
                 align-items: center;
             }
 
+            #content {
+                width: 100%;
+            }
+
+            @media only screen and (max-device-width: 640px) {
+                #main { flex-direction: column; }
+                #sidebar { width: 100% !important; }
+            }
+
             #sidebar {
                 background-color: var(--bg-color-tertiary);
                 width: 260px;
@@ -63,6 +72,12 @@
             }
             #alert > ul { margin: 4px 0; }
 
+            #stafflist {
+                overflow-x: scroll;
+                scrollbar-width: none;
+            }
+            #stafflist::-webkit-scrollbar { display: none; }
+
             h2 { color: var(--color-yellow); }
             h3 { color: var(--color-gray); }
             li { margin-bottom: 4px; }
@@ -76,7 +91,6 @@
                 padding: .4em;
                 border-bottom: 3px solid var(--text-color-secondary);
             }
-            details > *:not(summary) { margin-left: 20px; }
             summary {
                 color: var(--color-blue);
                 transition: .2s;
@@ -166,76 +180,78 @@
                 <p>Fridays and Sundays are our servers <span class="t_bold c_r">Blood Moons;</span> an event that makes the server a little more chaotic. During this event, you'll notice a higher prop power, extra gore, and reduced visibility at lower health. Be sure to play more carefully, or become a victim!</p>
                 <h3>Staff Information</h3>
                 <p>All staff members have their names colored in the scoreboard; <span class="t_bold">anyone without it isn't a staff member!</span></p>
-                <details>
-                    <summary>Staff Members</summary>
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>SteamID</th>
-                            <th>Rank</th>
-                        </tr>
-                        <tr>
-                            <td>Steven</td>
-                            <td><code>STEAM_0:1:48971987</code></td>
-                            <td style="color: var(--rank-owner)">Owner</td>
-                        </tr>
-                        <tr>
-                            <td>Bunnies2000</td>
-                            <td><code>STEAM_0:0:77968520</code></td>
-                            <td style="color: var(--rank-admin)">Admin</td>
-                        </tr>
-                        <tr>
-                            <td>Smivvie</td>
-                            <td><code>STEAM_0:1:62930903</code></td>
-                            <td style="color: var(--rank-admin)">Admin</td>
-                        </tr>
-                        <tr>
-                            <td>dee</td>
-                            <td><code>STEAM_0:0:163866777</code></td>
-                            <td style="color: var(--rank-moderator)">Moderator</td>
-                        </tr>
-                        <tr>
-                            <td>Kenneh</td>
-                            <td><code>STEAM_0:0:56458629</code></td>
-                            <td style="color: var(--rank-moderator)">Moderator</td>
-                        </tr>
-                        <tr>
-                            <td>papi sabes</td>
-                            <td><code>STEAM_0:1:53567988</code></td>
-                            <td style="color: var(--rank-moderator)">Moderator</td>
-                        </tr>
-                        <tr>
-                            <td>Pink55</td>
-                            <td><code>STEAM_0:0:63496873</code></td>
-                            <td style="color: var(--rank-moderator)">Moderator</td>
-                        </tr>
-                        <tr>
-                            <td>Sonichackedyou</td>
-                            <td><code>STEAM_0:1:65398114</code></td>
-                            <td style="color: var(--rank-moderator)">Moderator</td>
-                        </tr>
-                        <tr>
-                            <td>Squallhardt</td>
-                            <td><code>STEAM_0:0:537785561</code></td>
-                            <td style="color: var(--rank-moderator)">Moderator</td>
-                        </tr>
-                        <tr>
-                            <td>thatgingeydude</td>
-                            <td><code>STEAM_0:1:172161341</code></td>
-                            <td style="color: var(--rank-moderator)">Moderator</td>
-                        </tr>
-                        <tr>
-                            <td>Tori</td>
-                            <td><code>STEAM_0:1:63823966</code></td>
-                            <td style="color: var(--rank-moderator)">Moderator</td>
-                        </tr>
-                        <tr>
-                            <td>Sticraupl</td>
-                            <td><code>STEAM_0:1:231638390</code></td>
-                            <td style="color: var(--rank-officer)">Officer</td>
-                        </tr>
-                    </table>
-                </details>
+                    <details>
+                        <summary>Staff Members</summary>
+                        <div id="stafflist">
+                            <table>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>SteamID</th>
+                                    <th>Rank</th>
+                                </tr>
+                                <tr>
+                                    <td>Steven</td>
+                                    <td><code>STEAM_0:1:48971987</code></td>
+                                    <td style="color: var(--rank-owner)">Owner</td>
+                                </tr>
+                                <tr>
+                                    <td>Bunnies2000</td>
+                                    <td><code>STEAM_0:0:77968520</code></td>
+                                    <td style="color: var(--rank-admin)">Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>Smivvie</td>
+                                    <td><code>STEAM_0:1:62930903</code></td>
+                                    <td style="color: var(--rank-admin)">Admin</td>
+                                </tr>
+                                <tr>
+                                    <td>dee</td>
+                                    <td><code>STEAM_0:0:163866777</code></td>
+                                    <td style="color: var(--rank-moderator)">Moderator</td>
+                                </tr>
+                                <tr>
+                                    <td>Kenneh</td>
+                                    <td><code>STEAM_0:0:56458629</code></td>
+                                    <td style="color: var(--rank-moderator)">Moderator</td>
+                                </tr>
+                                <tr>
+                                    <td>papi sabes</td>
+                                    <td><code>STEAM_0:1:53567988</code></td>
+                                    <td style="color: var(--rank-moderator)">Moderator</td>
+                                </tr>
+                                <tr>
+                                    <td>Pink55</td>
+                                    <td><code>STEAM_0:0:63496873</code></td>
+                                    <td style="color: var(--rank-moderator)">Moderator</td>
+                                </tr>
+                                <tr>
+                                    <td>Sonichackedyou</td>
+                                    <td><code>STEAM_0:1:65398114</code></td>
+                                    <td style="color: var(--rank-moderator)">Moderator</td>
+                                </tr>
+                                <tr>
+                                    <td>Squallhardt</td>
+                                    <td><code>STEAM_0:0:537785561</code></td>
+                                    <td style="color: var(--rank-moderator)">Moderator</td>
+                                </tr>
+                                <tr>
+                                    <td>thatgingeydude</td>
+                                    <td><code>STEAM_0:1:172161341</code></td>
+                                    <td style="color: var(--rank-moderator)">Moderator</td>
+                                </tr>
+                                <tr>
+                                    <td>Tori</td>
+                                    <td><code>STEAM_0:1:63823966</code></td>
+                                    <td style="color: var(--rank-moderator)">Moderator</td>
+                                </tr>
+                                <tr>
+                                    <td>Sticraupl</td>
+                                    <td><code>STEAM_0:1:231638390</code></td>
+                                    <td style="color: var(--rank-officer)">Officer</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </details>
                 <p>If you feel that any of the staff are abusing their power, or if you've otherwise had issues, please contact Steven <code>STEAM_0:1:48971987</code> on Steam or on our Discord server.</p>
                 <h2 id="changelog">Changelog</h2>
                 <h4 style="color: var(--color-gray)" id="changelog_120521">12/05/21 - Holiday Season Update</h3>
